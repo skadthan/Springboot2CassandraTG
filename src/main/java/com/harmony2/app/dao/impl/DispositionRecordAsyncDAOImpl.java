@@ -54,10 +54,6 @@ public class DispositionRecordAsyncDAOImpl implements DispositionRecordAsyncDAO{
 	@Override
 	public CompletableFuture<Void> upsertTargetingHistoryData(DispositionRecord dispositionRec, LocalDate date) {
 		String dispType;
-		int days;
-		
-		Period daysBetween =date.until(LocalDate.now());
-		days = daysBetween.getDays();
 		
 		switch (dispositionRec.getDisptype()) {
 		case "Clicked":  dispType = "lastclickedate";

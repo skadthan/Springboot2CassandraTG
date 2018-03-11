@@ -2,7 +2,6 @@ package com.harmony2.app.dao.impl;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
