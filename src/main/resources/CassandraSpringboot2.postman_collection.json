@@ -1,6 +1,6 @@
 {
 	"info": {
-		"name": "Cassandra-Rest-DispositionHistory",
+		"name": "CassandraSpringboot2",
 		"_postman_id": "8035969a-5af5-527c-5faf-491e7e487acb",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
