@@ -1,0 +1,126 @@
+{
+	"info": {
+		"name": "Cassandra-Rest-DispositionHistory",
+		"_postman_id": "8035969a-5af5-527c-5faf-491e7e487acb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create-disposition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"ssoid\": \"3434bb6a-a92c-43e9-8d29-6c8d690ac7c2\",\n        \"offername\": \"LadduForyYou\",\n        \"disptype\": \"Accepted\",\n        \"layout\": \"Layout10\",\n        \"placement\":\"ChildMessage\",\n        \"style\":\"Style20\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/postdisposition",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"postdisposition"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-disposition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ssoid\": \"mi3bm8spp6ksc8jezu1tb0znspfy7earuv948tn\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/getdispositiondata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getdispositiondata"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-targetinghistorydata",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ssoid\": \"t0m0auf775ys0cmf8qg199gg16c1wf0bxdfksfi\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/gettargetinghistorydata",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gettargetinghistorydata"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "upd-empl",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 3,\n        \"name\": \"Harika\",\n        \"age\": 26,\n        \"salary\": 40000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
