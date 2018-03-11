@@ -1,5 +1,9 @@
 package com.harmony2.app.util;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +25,12 @@ import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.mapping.CassandraMappingContext;
 
 import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Host;
 import com.datastax.driver.core.HostDistance;
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
+import com.datastax.driver.core.policies.LoadBalancingPolicy;
 import com.datastax.driver.dse.DseCluster;
 import com.datastax.driver.dse.DseSession;
 
@@ -124,6 +130,25 @@ public class CassandraUtil {
         return session;
         }
     
+    
+    @Bean
+    public Cluster getCluster(){
+        PoolingOptions poolingOptions = new PoolingOptions();
+        poolingOptions
+        .setCoreConnectionsPerHost(HostDistance.LOCAL,  4)
+        .setMaxConnectionsPerHost( HostDistance.LOCAL, 10)
+        .setMaxRequestsPerConnection(HostDistance.LOCAL, 32768)
+        .setMaxRequestsPerConnection(HostDistance.REMOTE, 2000)
+        .setHeartbeatIntervalSeconds(120);
+
+        Cluster cluster = Cluster.builder()
+            .addContactPoints(this.getContactPoints())
+            .withPoolingOptions(poolingOptions)
+            .build();
+        
+        return cluster;
+        
+        }
     @Bean
     public String getCassandraVersion() {
     	DseCluster dseCluster=null;
@@ -167,6 +192,34 @@ public class CassandraUtil {
 		Session session = this.getPoolSession();
 		AsyncCqlOperations template = new AsyncCqlTemplate(session);
 		return template;
+	}
+	
+	public void monitorCassandra() {
+		
+		Cluster cluster = this.getCluster();
+		
+		final LoadBalancingPolicy loadBalancingPolicy =
+			     cluster.getConfiguration().getPolicies().getLoadBalancingPolicy();
+			final PoolingOptions poolingOptions =
+			cluster.getConfiguration().getPoolingOptions();
+
+			ScheduledExecutorService scheduled =
+			Executors.newScheduledThreadPool(1);
+			scheduled.scheduleAtFixedRate(new Runnable() {
+			    @Override
+			    public void run() {
+			        Session.State state = getPoolSession().getState();
+			        for (Host host : state.getConnectedHosts()) {
+			            HostDistance distance = loadBalancingPolicy.distance(host);
+			            int connections = state.getOpenConnections(host);
+			            int inFlightQueries = state.getInFlightQueries(host);
+			            System.out.printf("%s connections=%d, current load=%d, maxload=%d%n",
+			                host, connections, inFlightQueries,
+			                connections *
+			poolingOptions.getMaxRequestsPerConnection(distance));
+			        }
+			    }
+			}, 5, 5, TimeUnit.SECONDS);
 	}
 	
 }

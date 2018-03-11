@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.harmony2.app.model.DispositionRecord;
+import com.harmony2.app.model.TargetingHistory;
 import com.harmony2.app.service.DispositionRecordService;
+import com.harmony2.app.service.TargetingHistoryService;
 
 
 /**
@@ -22,6 +24,7 @@ public class DispositionController {
     
     @Autowired
     private DispositionRecordService DispositionService;
+
     
     public DispositionController() {
         System.out.println("DispositionController()");
@@ -46,4 +49,5 @@ public class DispositionController {
     DispositionRecord update(@RequestBody DispositionRecord dispositionRec) {
         return DispositionService.updateDispositionRecord(dispositionRec);
     }*/
+ 
 }
