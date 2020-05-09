@@ -213,10 +213,11 @@ public class CassandraUtil {
 			            HostDistance distance = loadBalancingPolicy.distance(host);
 			            int connections = state.getOpenConnections(host);
 			            int inFlightQueries = state.getInFlightQueries(host);
-			            System.out.printf("%s connections=%d, current load=%d, maxload=%d%n",
-			                host, connections, inFlightQueries,
-			                connections *
-			poolingOptions.getMaxRequestsPerConnection(distance));
+					/*
+					 * System.out.printf("%s connections=%d, current load=%d, maxload=%d%n", host,
+					 * connections, inFlightQueries, connections *
+					 * poolingOptions.getMaxRequestsPerConnection(distance));
+					 */
 			        }
 			    }
 			}, 5, 5, TimeUnit.SECONDS);
