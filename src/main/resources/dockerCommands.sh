@@ -24,6 +24,7 @@ docker node ls
 #docker swarm join --token SWMTKN-1-5541joibfa4cqy1lb3i2m6emhcc76hvrzwjecqm8ikdsufw3ge-51l6y92s7rmackbfezu7dtl2d 192.168.65.3:2377
 #To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions
 
+#create microservice containers in docker swarm
 docker service create --name springboot2cassandra --replicas 2 -p 8080:8080 skadthan/springboot2cassandra:v1
 
 #SonarQube
