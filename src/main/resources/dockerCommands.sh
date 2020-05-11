@@ -25,3 +25,11 @@ docker node ls
 #To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions
 
 docker service create --name springboot2cassandra --replicas 2 -p 8080:8080 skadthan/springboot2cassandra:v1
+
+#SonarQube
+mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=admin
+docker pull sonarqube
+docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
+
+#Jenkins
+sudo docker run -u root --rm -d -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean

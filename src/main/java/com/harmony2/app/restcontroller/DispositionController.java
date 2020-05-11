@@ -31,7 +31,7 @@ public class DispositionController {
     }
          
     @RequestMapping(value = "/postdisposition", method = RequestMethod.POST)    
-    DispositionRecord create(@RequestBody DispositionRecord dispositionRec) {        
+   public  DispositionRecord create(@RequestBody DispositionRecord dispositionRec) {        
         return DispositionService.createDispositionRecord(dispositionRec);
     }
  
@@ -41,7 +41,7 @@ public class DispositionController {
     }*/
  
     @RequestMapping(value = "/getdispositiondata", method = RequestMethod.POST)
-    List<DispositionRecord> findById(@RequestBody DispositionRecord dispositionRec) {        
+   public  List<DispositionRecord> findById(@RequestBody DispositionRecord dispositionRec) {        
         return DispositionService.getDispositionRecord(dispositionRec.getSsoid());
     }
  

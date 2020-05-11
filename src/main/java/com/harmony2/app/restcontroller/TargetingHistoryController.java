@@ -30,7 +30,7 @@ public class TargetingHistoryController {
     }
    
     @RequestMapping(value = "/gettargetinghistorydata", method = RequestMethod.POST)
-    List<TargetingHistory> findBySsoId(@RequestBody DispositionRecord dispositionRec) {        
+    public List<TargetingHistory> findBySsoId(@RequestBody DispositionRecord dispositionRec) {        
         return targetingHistoryService.getTargetingHistoryData(dispositionRec.getSsoid());
     }
  
