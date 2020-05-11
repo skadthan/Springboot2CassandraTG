@@ -2,6 +2,10 @@
 pipeline {
 
 	agent any
+	tools {
+        maven 'Maven 3.6.2'
+        jdk 'jdk12'
+    }
 	
 	stages {
 
@@ -13,13 +17,28 @@ pipeline {
       		   git 'https://github.com/skadthan/Springboot2CassandraTG.git'
   				 }
   		     }
+  		     
+  		 stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+  		
  
 		stage('Build and Unit Test') {
       		// Run build and test
       		 steps {
       			echo 'Run build and test'
-      			sh '''cd $WORKSPACE/Springboot2CassandraTG && ./mvnw clean test'''
+      			 sh 'mvn -Dmaven.test.failure.ignore=true install'
    				}
+   			 post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
    			}
 		stage('SonarQube analysis') { 
 			 
