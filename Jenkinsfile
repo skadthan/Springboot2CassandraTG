@@ -38,7 +38,7 @@ pipeline {
       		 steps {
       			
       			 echo 'Run build and test'
-      			 sh 'mvn clean test'
+      			 sh '/usr/lib/mvn/bin/mvn clean test'
       			 
    				}
    			 post {
