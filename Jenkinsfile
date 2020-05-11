@@ -35,8 +35,8 @@ pipeline {
       		 steps {
       			
       			 echo 'Run build and test'
-      			# sh 'mvn clean test'
-      			sh 'mvn -Dmaven.test.failure.ignore=true install'
+      			 sh 'mvn clean test'
+      			#sh 'mvn -Dmaven.test.failure.ignore=true install'
       			 
    				}
    			 post {
