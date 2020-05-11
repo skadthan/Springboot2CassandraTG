@@ -40,7 +40,7 @@ pipeline {
       			
       			 echo 'Run build and test'
       			 sh 'mvn clean test'
-      			 sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin'
+      			
    				}
    			 post {
                 success {
@@ -54,12 +54,7 @@ pipeline {
 			 steps {
 			 echo 'Sonarqube Analysis'
        		 
-       		 withSonarQubeEnv('sonarqube') {
-           				 sh "${scannerHome}/bin/sonar-scanner"
-        			}
-       		 timeout(time: 10, unit: 'MINUTES') {
-            			waitForQualityGate abortPipeline: true
-        			}
+       		  	sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin'
         		}
   		 	}
 
