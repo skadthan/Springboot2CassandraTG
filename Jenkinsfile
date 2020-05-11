@@ -19,15 +19,8 @@ pipeline {
             steps {
                 sh '''
                     whoami
-                    #export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
-                    #export MAVEN_HOME=/usr/lib/mvn
-                    #export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
-                    #source ~/.bash_profile
-                    #source /etc/profile
-                    mvn -v
-                    java -version
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
+                    echo $M2_HOME
+                    echo $JAVA_HOME
                     
                 '''
                 sh 'mvn -v'
