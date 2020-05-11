@@ -23,6 +23,8 @@ pipeline {
                     export MAVEN_HOME=/usr/lib/mvn
                     export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
                     source ~/.bash_profile
+                    mvn -v
+                    java -version
                     echo "PATH = ${PATH}"
                     echo "MAVEN_HOME = ${MAVEN_HOME}"
                     
