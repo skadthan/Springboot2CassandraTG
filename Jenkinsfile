@@ -36,6 +36,10 @@ pipeline {
       			
       			 echo 'Run build and test'
       			 sh 'mvn clean test'
+      			 sh '''cd $WORKSPACE/Springboot2CassandraTG && ./mvnw sonar:sonar \
+			 -Dsonar.host.url=http://localhost:9000 \
+			 -Dsonar.login=admin \
+			 -Dsonar.password=admin\'''
       			
       			 
    				}
@@ -49,18 +53,15 @@ pipeline {
 			 
 			 steps {
 			 echo 'Sonarqube Analysis'
-       		 withSonarQubeEnv('Sonar') { 
-      		 sh '''cd $WORKSPACE/Springboot2CassandraTG && ./mvnw sonar:sonar \
-			 -Dsonar.host.url=http://localhost:9000 \
-			 -Dsonar.login=admin \
-			 -Dsonar.password=admin\
-			 -Dsonar.sources=src/main \
-			 -Dsonar.java.binaries=build/classes \
-			 -Dsonar.java.libraries=build/libs/*.jar
-			 ........'''
+       		 
+       		 withSonarQubeEnv('sonarqube') {
+           				 sh "${scannerHome}/bin/sonar-scanner"
+        			}
+       		 timeout(time: 10, unit: 'MINUTES') {
+            			waitForQualityGate abortPipeline: true
+        			}
         		}
-        	}
-  		 }
+  		 	}
 
 		stage('Publish Images to Hub') {
 			steps {
