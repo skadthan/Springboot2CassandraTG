@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
+                    echo "MAVEN_HOME = ${MAVEN_HOME}"
                 '''
             }
         }
@@ -28,11 +28,10 @@ pipeline {
 		stage('Build and Unit Test') {
       		// Run build and test
       		 steps {
-      			 withEnv(["JAVA_HOME=${ tool 'jdk-1.8.0_64bits' }", "PATH+MAVEN=${tool 'maven-3.2.1'}/bin:${env.JAVA_HOME}/bin"]) {
-      		 
+      			
       			 echo 'Run build and test'
       			 sh 'mvn -Dmaven.test.failure.ignore=true install'
-      			  }
+      			 
    				}
    			 post {
                 success {
