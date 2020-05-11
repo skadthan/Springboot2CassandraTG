@@ -2,9 +2,9 @@
 pipeline {
 
 	agent any
-	 tools { 
+	tools { 
         maven 'Maven 3.6.2' 
-        jdk 'jdk12' 
+        jdk 'JDK12'
     }
 
 	
@@ -26,7 +26,6 @@ pipeline {
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 ''' 
-                sh 'mvn -v'
             }
         }
   		
