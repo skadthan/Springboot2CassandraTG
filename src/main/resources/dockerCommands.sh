@@ -34,3 +34,5 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 
 #Jenkins
 sudo docker run -u root --rm -d -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean
+#Validate Jenkinsfile
+curl --user admin:xxx -X POST -F "jenkinsfile=<Jenkinsfile" http://localhost:8080/pipeline-model-converter/validate

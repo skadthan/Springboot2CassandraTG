@@ -19,15 +19,15 @@ pipeline {
             steps {
                 sh '''
                     whoami
-                    export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
-                    export MAVEN_HOME=/usr/lib/mvn
+                    #export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+                    #export MAVEN_HOME=/usr/lib/mvn
                     #export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
                     #source ~/.bash_profile
-                    source /etc/profile
+                    #source /etc/profile
                     mvn -v
                     java -version
                     echo "PATH = ${PATH}"
-                    echo "MAVEN_HOME = ${MAVEN_HOME}"
+                    echo "M2_HOME = ${M2_HOME}"
                     
                 '''
             }
@@ -39,7 +39,7 @@ pipeline {
       		 steps {
       			
       			 echo 'Run build and test'
-      			 sh '/usr/lib/mvn/bin/mvn clean test'
+      			 sh 'mvn clean test'
       			 
    				}
    			 post {
