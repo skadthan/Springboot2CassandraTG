@@ -40,7 +40,7 @@ pipeline {
       			
       			 echo 'Run build and test'
       			 sh 'mvn clean test'
-      			 sh ''' cd $WORKSPACE/Springboot2CassandraTG && ./mvnw sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin '''
+      			 sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin'
    				}
    			 post {
                 success {
