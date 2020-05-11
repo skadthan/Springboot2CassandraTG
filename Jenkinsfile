@@ -29,7 +29,7 @@ pipeline {
       		 sh '''cd $WORKSPACE/Springboot2CassandraTG && ./mvnw sonar:sonar \
 			 -Dsonar.host.url=http://localhost:9000 \
 			 -Dsonar.login=admin \
-			 -Dsonar.password=admin\ \
+			 -Dsonar.password=admin\
 			 -Dsonar.sources=src/main \
 			 -Dsonar.java.binaries=build/classes \
 			 -Dsonar.java.libraries=build/libs/*.jar
@@ -38,19 +38,6 @@ pipeline {
         	}
   		 }
 
-   
-		stage("SonarQube Quality Gate") { 
-			 stesps{
-			 
-       		 timeout(time: 1, unit: 'HOURS') { 
-           		def qg = waitForQualityGate() 
-          		 if (qg.status != 'OK') {
-             		error "Pipeline aborted due to quality gate failure: ${qg.status}"
-           				}
-       			 	}
-   				}
-   		  }
-   
 		stage('Publish Images to Hub') {
 			steps {
 			
