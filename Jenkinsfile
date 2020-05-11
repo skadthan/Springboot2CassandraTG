@@ -2,10 +2,7 @@
 pipeline {
 
 	agent any
-	tools {
-        maven 'Maven 3.6.2'
-        jdk 'jdk12'
-    }
+
 	
 	stages {
 
@@ -31,8 +28,11 @@ pipeline {
 		stage('Build and Unit Test') {
       		// Run build and test
       		 steps {
-      			echo 'Run build and test'
+      			 withEnv(["JAVA_HOME=${ tool 'jdk-1.8.0_64bits' }", "PATH+MAVEN=${tool 'maven-3.2.1'}/bin:${env.JAVA_HOME}/bin"]) {
+      		 
+      			 echo 'Run build and test'
       			 sh 'mvn -Dmaven.test.failure.ignore=true install'
+      			  }
    				}
    			 post {
                 success {
