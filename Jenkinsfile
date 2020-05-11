@@ -2,6 +2,10 @@
 pipeline {
 
 	agent any
+	 tools { 
+        maven 'Maven 3.6.2' 
+        jdk 'jdk12' 
+    }
 
 	
 	stages {
@@ -17,12 +21,11 @@ pipeline {
   		     
   		 stage ('Initialize') {
             steps {
+            	sh 'whoami'
                 sh '''
-                    whoami
-                    echo $M2_HOME
-                    echo $JAVA_HOME
-                    
-                '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
                 sh 'mvn -v'
             }
         }
