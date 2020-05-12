@@ -78,6 +78,7 @@ pipeline {
 			 steps {
       			echo 'deploy the containers'
       			sh "docker rm springboot2cassandrav1"
+      			sh "sleep 60"
       			sh "docker container run  --name springboot2cassandrav1 -p 8090:8090 -d skadthan/springboot2cassandra:v1"
   			 }
 		}
