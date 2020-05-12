@@ -67,7 +67,7 @@ pipeline {
        				// sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
       				}
       				
-      				 withDockerRegistry([ credentialsId: "094d9620-4b88-422e-812e-021167c2b9cf", url: "" ]) {
+      				 withDockerRegistry([ credentialsId: "094d9620-4b88-422e-812e-021167c2b9cf", url: "https://hub.docker.com" ]) {
           				sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
         }
     			}
