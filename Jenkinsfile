@@ -63,21 +63,21 @@ pipeline {
 			steps {
    				script {
        				// docker.build registry + ":v1"
-       				sh "/usr/local/bin/docker image build -t skadthan/springboot2cassandra:v1 ."
+       				sh "docker image build -t skadthan/springboot2cassandra:v1 ."
        		
-       				// sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
+       				 sh "docker push skadthan/springboot2cassandra:v1"
       				}
       				
-      				 withDockerRegistry([ credentialsId: "dockerhub", url: "https://hub.docker.com" ]) {
-          				sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
-        }
+      				// withDockerRegistry([ credentialsId: "dockerhub", url: "https://hub.docker.com" ]) {
+          			//	sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
+        			//}
     			}
    		}
 
 		stage('Deploy Images with Docker-Compose') {
 			 steps {
       			echo 'deploy the containers'
-      			sh "/usr/local/bin/docker container run --name springboot2cassandra -p 8090:8090 -d skadthan/springboot2cassandra:v1"
+      			sh "docker container run --name springboot2cassandra -p 8090:8090 -d skadthan/springboot2cassandra:v1"
   			 }
 		}
 		
