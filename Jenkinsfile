@@ -61,8 +61,8 @@ pipeline {
 		stage('Publish Images to Hub') {
 			steps {
    				script {
-       				// docker.build registry + ":v1"
-       				sh "docker image build -t skadthan/springboot2cassandra:v1 ."
+       				 docker.build registry + ":v1"
+       				//sh "docker image build -t skadthan/springboot2cassandra:v1 ."
       				}
     			}
    		}
