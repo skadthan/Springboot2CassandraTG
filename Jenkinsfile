@@ -25,11 +25,10 @@ pipeline {
   		     
   		 stage ('Initialize') {
             steps {
-            	sh 'whoami'
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                ''' 
+            	sh "whoami"
+                sh "echo PATH = ${PATH}"
+                sh "echo M2_HOME= {M2_HOME}"
+                
             }
         }
   		
