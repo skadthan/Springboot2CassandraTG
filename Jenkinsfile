@@ -39,7 +39,7 @@ pipeline {
       		 steps {
       			
       			 echo 'Run build and test'
-      			 sh 'mvn clean test'
+      			 sh 'mvn clean test install'
       			
    				}
    			 post {
