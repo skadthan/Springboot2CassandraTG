@@ -63,9 +63,13 @@ pipeline {
    				script {
        				// docker.build registry + ":v1"
        				sh "/usr/local/bin/docker image build -t skadthan/springboot2cassandra:v1 ."
-       				sh "/usr/local/bin/docker login"
-       				sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
+       		
+       				// sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
       				}
+      				
+      				 withDockerRegistry([ credentialsId: "094d9620-4b88-422e-812e-021167c2b9cf", url: "" ]) {
+          				sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
+        }
     			}
    		}
 
