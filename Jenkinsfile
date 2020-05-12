@@ -58,11 +58,12 @@ pipeline {
         		}
   		 	}
 
-		stage('Publish Images to Hub') {
+		stage('Build & Publish Images to Hub') {
 			steps {
    				script {
        				// docker.build registry + ":v1"
        				sh "/usr/local/bin/docker image build -t skadthan/springboot2cassandra:v1 ."
+       				sh "docker push skadthan/springboot2cassandra:v1"
       				}
     			}
    		}
@@ -70,6 +71,7 @@ pipeline {
 		stage('Deploy Images with Docker-Compose') {
 			 steps {
       			echo 'deploy the containers'
+      			sh "docker container run --name springboot2cassandra -p 8090:8090 -d skadthan/springboot2cassandra:v1"
   			 }
 		}
 		
