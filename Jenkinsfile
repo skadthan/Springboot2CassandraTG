@@ -63,7 +63,7 @@ pipeline {
    				script {
        				// docker.build registry + ":v1"
        				sh "/usr/local/bin/docker image build -t skadthan/springboot2cassandra:v1 ."
-       				sh "/usr/local/bin/docker login -u ${env.dockeruser} -p ${env.dockerpass}
+       				sh "/usr/local/bin/docker login -u ${env.dockeruser} -p ${env.dockerpass}"
        				sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
       				}
     			}
