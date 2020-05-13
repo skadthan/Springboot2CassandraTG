@@ -1,3 +1,5 @@
+// Define Release Number
+def release = "V2"
 
 pipeline {
 
@@ -62,14 +64,14 @@ pipeline {
 		stage('Build & Publish Images to Hub') {
 			steps {
    				script {
-       				// docker.build registry + ":v1"
-       				sh "docker image build -t skadthan/springboot2cassandra:v1 ."
+       				// docker.build registry + ":${release}"
+       				sh "docker image build -t skadthan/springboot2cassandra:${release} ."
        		
-       				 sh "docker push skadthan/springboot2cassandra:v1"
+       				 sh "docker push skadthan/springboot2cassandra:${release}"
       				}
       				
       				// withDockerRegistry([ credentialsId: "dockerhub", url: "https://hub.docker.com" ]) {
-          			//	sh "/usr/local/bin/docker push skadthan/springboot2cassandra:v1"
+          			//	sh "/usr/local/bin/docker push skadthan/springboot2cassandra:${release}"
         			//}
     			}
    		}
@@ -77,7 +79,7 @@ pipeline {
 		stage('Deploy Images with Docker-Compose') {
 			 steps {
       			echo 'deploy the containers'
-      			sh "docker container run  --name springboot2cassandrav1 -p 8090:8090 -d skadthan/springboot2cassandra:v1"
+      			sh "docker container run  --name springboot2cassandrav1 -p 8090:8090 -d skadthan/springboot2cassandra:${release}"
   			 }
 		}
 		
