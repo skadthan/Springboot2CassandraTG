@@ -79,7 +79,7 @@ pipeline {
 		stage('Deploy Images with Docker-Compose') {
 			 steps {
       			echo 'deploy the containers'
-      			sh "docker container run  --name springboot2cassandrav1 -p 8090:8090 -d skadthan/springboot2cassandra:${release}"
+      			sh "docker container run  --name springboot2cassandra${release} -p 8090:8090 -d skadthan/springboot2cassandra:${release}"
   			 }
 		}
 		
