@@ -3,18 +3,18 @@ def release = "V5"
 
 pipeline {
 
-	//agent any
-	//tools { 
-     //   maven 'Maven 3.6.2' 
-   //     jdk 'jdk8' 
-  //  }
+	agent any
+	tools { 
+          maven '3.6.2' 
+          jdk '11' 
+      }
 	
-	 agent {
+	 /*agent {
         docker {
             image 'maven:3.8.1-adoptopenjdk-11' 
             args '-v /Users/skadthan/.m2:/root/.m2' 
         }
-    }
+    }*/
     
 	environment {
     registry = "skadthan/springboot2cassandra"
