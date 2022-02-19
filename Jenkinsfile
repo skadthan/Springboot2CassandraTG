@@ -5,8 +5,8 @@ pipeline {
 
 	agent any
 	tools { 
-          maven '3.6.2' 
-          jdk '11' 
+          maven '3.8.4' 
+          jdk 'OpenJDK12' 
       }
 	
 	 /*agent {
