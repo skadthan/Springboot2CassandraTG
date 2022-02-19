@@ -30,7 +30,7 @@ pipeline {
             	sh "whoami"
                 sh "echo PATH = ${PATH}"
                 sh "echo M2_HOME= {M2_HOME}"
-                sh "/usr/local/bin/docker -v"
+                sh "/usr/bin/docker -v"
                 sh "docker -v"
                 
             }
