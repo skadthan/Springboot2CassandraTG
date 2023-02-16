@@ -10,10 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.harmony2.app.TargetingHistoryApplication;
 
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
-import org.springframework.boot.SpringApplication;
-
 
 @ExtendWith(SpringExtension.class)
 @RunWith(SpringRunner.class)
@@ -25,11 +21,5 @@ public class TargetingHistoryApplicationTest {
     public void contextLoads() {
     }
 	
-   void testApplication() {
-        MockedStatic<SpringApplication> utilities = Mockito.mockStatic(SpringApplication.class);
-        utilities.when((MockedStatic.Verification) SpringApplication.run(WebsiteApplication.class, new String[]{})).thenReturn(null);
-        TargetingHistoryApplication.main(new String[]{});
-        assertThat(SpringApplication.run(TargetingHistoryApplication.class, new String[]{})).isEqualTo(null);
-    }
 }
 
