@@ -1,5 +1,5 @@
 // Define Release Number
-def release = "V5"
+def release = "V6"
 
 pipeline {
 
