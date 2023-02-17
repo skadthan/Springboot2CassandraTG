@@ -49,5 +49,12 @@ public class DispositionController {
     DispositionRecord update(@RequestBody DispositionRecord dispositionRec) {
         return DispositionService.updateDispositionRecord(dispositionRec);
     }*/
+    
+     @RequestMapping(value = "/healthcheck", method = RequestMethod.GET)
+    public String healthCheck() {
+    
+        return "I am alive!";
+    }
+
  
 }
