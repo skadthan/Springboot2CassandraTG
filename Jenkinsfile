@@ -87,7 +87,7 @@ pipeline {
 		stage('Deploy Images with Docker-Compose') {
 			 steps {
       			echo 'deploy the containers'
-			sh "docker stop ashu-banking${prev_release} || true && docker rm ashu-banking || true"
+			sh "docker stop springboot2cassandra${prev_release} || true && docker rm springboot2cassandrag || true"
       			sh "docker container run  --name springboot2cassandra${new_release} -p 8090:8090 -d skadthan/springboot2cassandra:${new_release}"
   			 }
 		}
