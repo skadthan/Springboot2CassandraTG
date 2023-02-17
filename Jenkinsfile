@@ -64,7 +64,7 @@ pipeline {
 			 steps {
 			 echo 'Sonarqube Analysis'
        		 
-       		  	sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=admin'
+       		  	sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=abcd123'
         		}
   		 	}
 
