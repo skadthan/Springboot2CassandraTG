@@ -1,5 +1,6 @@
 // Define Release Number
-def release = "V6"
+def prev_release = "V6"
+def new_release="V7"
 
 pipeline {
 
@@ -72,9 +73,9 @@ pipeline {
 			steps {
    				script {
        				// docker.build registry + ":${release}"
-       				sh "docker image build -t skadthan/springboot2cassandra:${release} ."
+       				sh "docker image build -t skadthan/springboot2cassandra:${new_release} ."
        		
-       				 sh "docker push skadthan/springboot2cassandra:${release}"
+       				 sh "docker push skadthan/springboot2cassandra:${new_release}"
       				}
       				
       				// withDockerRegistry([ credentialsId: "dockerhub", url: "https://hub.docker.com" ]) {
@@ -86,7 +87,8 @@ pipeline {
 		stage('Deploy Images with Docker-Compose') {
 			 steps {
       			echo 'deploy the containers'
-      			sh "docker container run  --name springboot2cassandra${release} -p 8090:8090 -d skadthan/springboot2cassandra:${release}"
+			sh "docker stop ashu-banking${prev_release} || true && docker rm ashu-banking || true"
+      			sh "docker container run  --name springboot2cassandra${new_release} -p 8090:8090 -d skadthan/springboot2cassandra:${new_release}"
   			 }
 		}
 		
